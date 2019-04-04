@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html ">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html ">
+
+<dom-module id="ingresa-text">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <paper-input value="{{text}}"></paper-input>
+    <paper-button on-click="sendText" raised>Guardar</paper-button>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class IngresaText extends Polymer.Element {
+      static get is() { return 'ingresa-text'; }
+      static get properties() {
+        return {
+          text: {
+            type: String,
+            value: ' ',
+            notify: true
+          }
+        };
+      }
+      sendText(){
+        this.dispatchEvent( new CustomEvent('data-event',{detail: this.text, bubbles:true}));
+      }
+    }
+
+    window.customElements.define(IngresaText.is, IngresaText);
+  </script>
+</dom-module>

@@ -1,0 +1,52 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../components/ingresa-text.html">
+
+<dom-module id="ejercicio-tres-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <ingresa-text on-data-event= "agregaText" value="{{nuevoValor}}"></ingresa-text>
+
+    <br>
+    <div id="datas">
+    <ul id="data">
+    </div>
+      
+    </ul>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class EjercicioTresApp extends Polymer.Element {
+      static get is() { return 'ejercicio-tres-app'; }
+      static get properties() {
+        return {
+          nuevoValor: {
+            type: String,
+            value: ' '
+          }
+        };
+      }
+      agregaText(e){
+        let ulData = this.$.data;
+        let liData = document.createElement('li');
+
+        liData.innerHTML = e.detail;
+
+        ulData.appendChild(liData);
+
+        
+        //console.log(e.detail);
+      }
+     
+    }
+
+    window.customElements.define(EjercicioTresApp.is, EjercicioTresApp);
+  </script>
+</dom-module>
